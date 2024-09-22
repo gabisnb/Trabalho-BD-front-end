@@ -1,42 +1,44 @@
 import './App.css';
 import Login from './Login';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import axios from 'axios';
 
 function App() {
-
+  const API_URL = "http://localhost:3000/usuario";
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [fetchError, setFetchError] = useState(null); // will catch the errors
-  // const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState(null);
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    console.log('Email:', email);
-    console.log('Password:', senha);
+  const handleLogin = async (e) => {
+    try{
+      e.preventDefault(); // will prevent the page from reloading
+      setIsLoading(true);
+      setFetchError(null);
+      // console.log('Email:', email);
+      // console.log('Password:', senha);
+      const body = {email: email, senha: senha};
 
-    if(!email)
-      return alert('Email is required');
-
-    if(!senha)
-      return alert('Password is required');
-
-    const fetchUser = async() => { //could be declared outside and be called inside instead
-      try{
-        // const user = await userByCredentials(email, senha); // will get the response to the fetch
-        // if(user == null || user == undefined) throw Error("Email or password is incorrect");
-      }
-      catch (err){
-        setFetchError(err.message);
-      }
-      finally{
-        // setUser(user);
-        console.log('Fetch done');
+      // await new Promise((resolve) => setTimeout(resolve, 1000));
+      const response = await axios.post(`${API_URL}/login`, body);
+      setUser(response.data);
+      // console.log(response);
+    }
+    catch (err){
+      console.log(err);
+      if (axios.isAxiosError(err)) {
+        if (err.response?.status === 404) {
+          setFetchError('Usuário ou senha inválidos');
+        }
       }
     }
-
-    setEmail('');
-    setSenha('');
+    finally{
+      console.log('Fetch done');
+      setEmail('');
+      setSenha('');
+      setIsLoading(false);
+    }
   }
 
   return(
@@ -50,7 +52,9 @@ function App() {
           handleLogin={handleLogin}
         />
         <div className="result">
-          {fetchError && <p style={{color: "red"}}>{`Error: ${fetchError}`}</p> /* only shows if theres errors */}
+          {fetchError && <p style={{color: "red", textAlign: 'center'}}>{`Error: ${fetchError}`}</p> /* only shows if theres errors */}
+          {isLoading && <p style={{color: "lightblue"}}>Autenticando...</p>}
+          {!isLoading && user && <p>{`Bem vindo, ${user.nome_usuario}`}</p> /* only shows if theres a user */}
         </div>
       </main>
     </>
