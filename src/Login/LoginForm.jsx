@@ -1,9 +1,10 @@
 import { useRef } from "react";
+import "./Login.css";
 
-const Login = ({email, setEmail, senha, setSenha, handleLogin}) => {
+const LoginForm = ({email, setEmail, senha, setSenha, handleLogin}) => {
   const inputRef = useRef();
   return(
-    <form className="login" onSubmit={handleLogin}>
+    <form className="login-form" onSubmit={handleLogin}>
         <h1>Login</h1>
         <input
             type="text"
@@ -27,4 +28,4 @@ const Login = ({email, setEmail, senha, setSenha, handleLogin}) => {
   )
 }
 
-export default Login
+export default LoginForm
