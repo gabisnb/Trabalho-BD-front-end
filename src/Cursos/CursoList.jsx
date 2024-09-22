@@ -14,7 +14,9 @@ function CursoList() {
                 setFetchError(null);
 
                 const response = await axios.get("http://localhost:3000/curso");
-                // console.log(response.data);
+                if(response.data.length === 0){
+                    throw new Error('Não há cursos');
+                }
                 setCursoList(response.data);
             }
             catch (err){
@@ -23,10 +25,12 @@ function CursoList() {
                         setFetchError('Cursos não encontrados');
                     }
                 }
+                else{
+                    setFetchError(err.message);
+                }
             }
             finally{
                 setIsLoading(false);
-                // console.log(cursos);
             }
           };
 
@@ -38,18 +42,19 @@ function CursoList() {
             {fetchError && <h1 style={{color: "red", textAlign: 'center'}}>{`Error: ${fetchError}`}</h1> /* only shows if theres errors */}
             {isLoading && <p style={{color: "lightblue"}}>Carregando...</p>}
             {!fetchError && !isLoading &&
-                <>
+                <main>
                     <h1>Cursos</h1>
                     <dl>
                         {cursos.map((curso) => (
                             <Curso
+                                id_curso={curso.id_curso}
                                 nome={curso.nome_curso}
                                 area={curso.area.nome_area}
                                 descricao={curso.descricao_curso}
                             />
                         ))}
                     </dl>
-                </>
+                </main>
                 
             }
         </main>

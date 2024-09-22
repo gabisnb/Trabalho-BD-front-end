@@ -1,8 +1,11 @@
 main.cursos{
     display: grid;
-    width: 100vw;
+    width: 90vw;
+    max-width: 90vw;
+    max-height: 80vh;
     box-sizing: border-box;
     border: solid 2px #ccc;
+    overflow: auto;
 }
 
 dl{
@@ -33,10 +36,18 @@ dd{
     color: lightgray;
 }
 
-div.item{
+div.curso{
     margin: 10px;
     padding: 10px;
     border: solid 2px #ccc;
     border-radius: 5px;
     background-color: rgb(80, 80, 80);
+}
+
+div.aula{
+    margin: 10px;
+    padding: 10px;
+    border: solid 2px #ccc;
+    border-radius: 5px;
+    background-color: rgb(62, 62, 62);
 }

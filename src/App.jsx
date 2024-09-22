@@ -13,7 +13,7 @@ function App() {
       {!user && <Login API_URL_ROOT={API_URL} user={user} setUser={setUser}/>}
       {user && 
       <>
-        <h1>{`Bem vindo, ${user.nome_usuario}`}</h1>
+        <header><h1>{`Bem vindo, ${user.nome_usuario}`}</h1></header>
         <CursoList />
       </>
       }
