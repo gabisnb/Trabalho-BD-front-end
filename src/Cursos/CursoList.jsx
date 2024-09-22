@@ -26,7 +26,7 @@ function CursoList() {
             }
             finally{
                 setIsLoading(false);
-                console.log(cursos);
+                // console.log(cursos);
             }
           };
 
@@ -43,7 +43,6 @@ function CursoList() {
                     <dl>
                         {cursos.map((curso) => (
                             <Curso
-                                key={curso.id_curso}
                                 nome={curso.nome_curso}
                                 area={curso.area.nome_area}
                                 descricao={curso.descricao_curso}

@@ -7,7 +7,7 @@ import { AiFillCaretDown, AiFillCaretRight } from "react-icons/ai";
 function Curso({key, nome, area, descricao}){
     const [isOpen, setIsOpen] = useState(false);
 
-    console.log(key, nome, area, descricao);
+    // console.log(key, nome, area, descricao);
     return (
         <div key={key} className="item">
             <dt onClick={(e)=>setIsOpen(!isOpen)}>

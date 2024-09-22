@@ -29,7 +29,7 @@ const Login = ({API_URL_ROOT, user, setUser}) => {
       }
     }
     finally{
-      console.log('Fetch done');
+      // console.log('Fetch done');
       setEmail('');
       setSenha('');
       setIsLoading(false);
