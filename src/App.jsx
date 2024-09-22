@@ -10,9 +10,13 @@ function App() {
 
   return(
     <main>
-      {/* {!user && <Login API_URL_ROOT={API_URL} user={user} setUser={setUser}/>} */}
-      {/* {user && <h1>{`Bem vindo, ${user.nome_usuario}`}</h1>} */}
-      <CursoList />
+      {!user && <Login API_URL_ROOT={API_URL} user={user} setUser={setUser}/>}
+      {user && 
+      <>
+        <h1>{`Bem vindo, ${user.nome_usuario}`}</h1>
+        <CursoList />
+      </>
+      }
     </main>
   )
 }

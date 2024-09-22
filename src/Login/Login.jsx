@@ -37,7 +37,7 @@ const Login = ({API_URL_ROOT, user, setUser}) => {
   }
   const inputRef = useRef();
   return(
-    <>
+    <main>
       <LoginForm
         email={email}
         setEmail={setEmail}
@@ -50,7 +50,7 @@ const Login = ({API_URL_ROOT, user, setUser}) => {
         {isLoading && <p style={{color: "lightblue"}}>Autenticando...</p>}
         {!isLoading && user && <p>{`Bem vindo, ${user.nome_usuario}`}</p> /* only shows if theres a user */}
       </div>
-    </>
+    </main>
   )
 }
 

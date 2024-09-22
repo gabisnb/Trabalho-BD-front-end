@@ -34,7 +34,7 @@ function CursoList() {
     }, []);
 
     return (
-        <main>
+        <main className="cursos">
             {fetchError && <h1 style={{color: "red", textAlign: 'center'}}>{`Error: ${fetchError}`}</h1> /* only shows if theres errors */}
             {isLoading && <p style={{color: "lightblue"}}>Carregando...</p>}
             {!fetchError && !isLoading &&
@@ -43,9 +43,9 @@ function CursoList() {
                     <dl>
                         {cursos.map((curso) => (
                             <Curso
-                                key={curso.id}
+                                key={curso.id_curso}
                                 nome={curso.nome_curso}
-                                area={curso.id_area}
+                                area={curso.area.nome_area}
                                 descricao={curso.descricao_curso}
                             />
                         ))}

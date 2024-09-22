@@ -1,13 +1,13 @@
-main{
+main.cursos{
     display: grid;
-    width: 100%;
+    width: 100vw;
     box-sizing: border-box;
+    border: solid 2px #ccc;
 }
 
 dl{
     display: grid;
     align-items: left;
-    border: solid 2px #ccc;
     padding: 0 0.25rem 0.25rem;
 }
 
@@ -18,6 +18,9 @@ dt{
 }
 
 dd{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     margin-left: 10px;
     font-size: small;
 }
@@ -35,4 +38,5 @@ div.item{
     padding: 10px;
     border: solid 2px #ccc;
     border-radius: 5px;
+    background-color: rgb(80, 80, 80);
 }
